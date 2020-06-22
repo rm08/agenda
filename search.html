@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles/search.css">
+    <title>Lista de Contatos</title>
+    <style>
+      h2 {
+        text-align: center
+      }
+    </style>
+</head>
+<body>
+<header>
+        <a href="/" id="page-create-point">
+        <img src="/img/home.svg" alt="voltar" id="back">
+        </a>
+</header>
+<table class="content-table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Telefone</th>
+      <th>Endereço</th>
+      <th>Número</th>
+      <th>Estado</th>
+      <th>Cidade</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if total > 0 %}
+      {% for listar in lista %}
+        <tr>
+          <th>{{ listar.name }}</th>
+          <th>{{ listar.phone }}</th>
+          <th>{{ listar.address }}</th>
+          <th>{{ listar.address2 }}</th>
+          <th>{{ listar.state }}</th>
+          <th>{{ listar.city }}</th>
+          <th>
+              <a href="/modals/update.html">
+                <button type="submit" style="border: 0; background: transparent">
+                  <img src="/img/pencil.png" alt="edit" id="opt">
+                </button>
+              </a>
+            <form action="/deldados/{{ listar.id }}" method="POST">
+              <button type="submit" style="border: 0; background: transparent">
+                <img src="/img/remove.png" alt="delete" id="opt">
+              </button>
+            </form>
+          </th>
+        </tr>
+      {% endfor %}
+
+    {% else %}
+
+    <h2>Nenhum contato cadastrado</h2>
+
+    {% endif %}
+  </tbody>
+</table>
+
+{% if deleted %}
+{% include "./src/modals/del-dados.html" %}
+{% endif %}
+
+{% if update %}
+{% include "./src/modals/confirm-update.html" %}
+{% endif %}
+
+</body>
+
+</html>

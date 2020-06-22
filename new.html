@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="styles/saved-contact.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <title>Cadastrar</title>
+</head>
+<body>
+
+<div id="page-create-point">
+    <form action="/savedata" method="POST">
+        <h1>Cadastro de Contatos</h1>
+
+        <fieldset>
+
+            <div class="field-group">
+                <div class="field">
+                    <label for="name">Nome</label>
+                    <input type="text" name="name" required="required">
+                </div>
+                <div class="field">
+                    <label for="phone">Telefone</label>
+                    <input type="phone" name="phone" required="required">
+                </div>
+            </div>
+
+
+            <div class="field-group">
+                <div class="field">
+                    <label for="address">Endereço</label>
+                    <input type="text" name="address" required="required">
+                </div>
+                <div class="field">
+                    <label for="address2">Número/Complemento</label>
+                    <input type="text" name="address2" required="required">
+                </div>
+            </div>
+
+            <div class="field-group">
+                <div class="field">
+                    <label for="state" required="required">Estado</label>
+                    <select name="uf">
+                        <option value="">Selecione o Estado</option>
+                    </select>
+                    <input type="hidden" name="state">
+                </div>
+
+                <div class="field">
+                    <label for="city">Cidade</label>
+                    <select name="city" disabled="disabled" required="required">
+                        <option value="">Selecione a Cidade</option>
+                    </select>
+                </div>
+            </div>
+
+        </fieldset>
+
+        <div class="teste">
+        <button type="submit">Cadastrar</button>
+        <a href="/">
+        <button type="button">Voltar</button>
+        </a>
+        </div>
+    </form>
+</div>
+
+    {% if saved %}
+        {% include "./src/modals/saved-contact.html" %}
+    {% endif %}
+
+
+<script src="/js/addnew.js"></script>
+</body>
+</html>

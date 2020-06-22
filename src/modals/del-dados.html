@@ -1,0 +1,46 @@
+<style>
+    #modal {
+    background-color: #0E0A14ef;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 400ms;
+}
+
+#modal.hide {
+    display: none;
+}
+
+#modal .content {
+    color: white;
+    width: 420px;
+}
+
+#modal.point .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#modal.point h1 {
+    color: white;
+    margin-top: 32px;
+}
+</style>
+
+<div id="modal" class="point">
+    <div class="content">
+        <img src="/img/x.svg" alt="Registro deletado">
+        <h1>Registro deletado</h1>
+    </div>
+</div>
+
+<script>
+setTimeout(() => {
+    window.location = "/listar-contatos"
+}, 2000)
+</script>

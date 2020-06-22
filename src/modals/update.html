@@ -1,0 +1,13 @@
+<style>
+    #updatename {
+        display: grid;
+        position: relative;
+    }
+</style>
+<form action="/update/{{ listar.id }}" method="POST">
+    <div id="updatename">
+        <input type="text" value="Nome" name="name" required="required">
+        <br />
+        <button type="submit">Atualizar</button>
+    </div>
+</form>
