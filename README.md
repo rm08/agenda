@@ -1,7 +1,5 @@
 # agenda
-Nodejs Sqlite Nunjucks
+Nodejs - Sqlite - Nunjucks - JS - Express 
 
-para iniciar o projeto basta digitar no console dentro da pasta...
-nodemon server.js
+para iniciar o projeto: nodemon server.js
 
-falta atualizar a edição dos contatos
