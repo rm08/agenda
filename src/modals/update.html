@@ -1,13 +1,21 @@
-<style>
-    #updatename {
-        display: grid;
-        position: relative;
-    }
-</style>
-<form action="/update/{{ listar.id }}" method="POST">
-    <div id="updatename">
-        <input type="text" value="Nome" name="name" required="required">
-        <br />
-        <button type="submit">Atualizar</button>
-    </div>
-</form>
+{% for editar in edit %}
+    <form action="/updatedata" method="POST">
+            <tr>
+            <input type="hidden" value="{{ editar.id }}" name="id">
+            <th><input type="text" value="{{ editar.name }}" name="name"></th>
+            <th><input type="text" value="{{ editar.phone }}" name="phone" style='width:100px'></th>
+            <th><input type="text" value="{{ editar.address }}" name="address"></th>
+            <th><input type="text" value="{{ editar.address2 }}" name="address2" style='width:45px'></th>
+            <th><input type="text" value="{{ editar.state }}" name="state" style='width:100px'></th>
+            <th><input type="text" value="{{ editar.city }}" name="city" style='width:100px'></th>
+            <th>
+                <button type="submit" style="border: 0; background: transparent">
+                    <img src="/img/check.png" alt="edit" id="opt">
+                </button>
+                <a href="/listar-contatos">
+                    <img src="/img/remove.png" alt="delete" id="opt">
+                </a>
+            </th>
+            </tr>
+    </form>
+{% endfor %}

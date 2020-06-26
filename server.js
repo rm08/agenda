@@ -71,21 +71,40 @@ server.get("/listar-contatos", (req, res) => {
 })
 
 
-//rota para atualizar os campos da tabela
-server.post('/update/:id', function(req, res){
-    const query = `UPDATE lista SET name = "`+ [req.body.name] +`" where id = "18"`;
+//editar contato
+server.post('/editar/:id', function(req, res){
+    db.all(`SELECT * FROM lista where id =` +[req.params.id], function(err, rows) {
+        if(err) {
+            return console.log(err)
+        }
+        return res.render("search.html", {editar: true, edit: rows, total: 1})
+    })
+})
+
+server.post("/updatedata", (req, res) => {
+    const query = `UPDATE lista SET name ="`+[req.body.name]+`",
+    phone ="`+[req.body.phone]+`",
+    address ="`+[req.body.address]+`",
+    address2 ="`+[req.body.address2]+`",
+    state ="`+[req.body.state]+`",
+    city ="`+[req.body.city]+`"
+    where id = ` +[req.body.id];
+
     function afterUpdateData(err) {
         if(err) {
             return console.log(err)
         }
         
-        console.log("Cadastrado Atualizado")
+        console.log("Editado com sucesso")
         console.log(this)
 
-        return res.render("search.html", { update: true })
+        return res.render("search.html", { up: true, total: 1 })
     }
+        
     db.run(query, afterUpdateData)
+
 })
+
 
 //rota para deletar contato
 server.post('/deldados/:id', function(req, res){
@@ -99,7 +118,7 @@ server.post('/deldados/:id', function(req, res){
         console.log("Cadastrado deletado com sucesso")
         console.log(this)
 
-        return res.render("search.html", { deleted: true })
+        return res.render("search.html", { deleted: true, total: 1 })
     }
     db.run(query, afterDeleteData)
 })

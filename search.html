@@ -30,6 +30,9 @@
     </tr>
   </thead>
   <tbody>
+  {% if editar %}
+    {% include "./src/modals/update.html" %}
+  {% endif %}
     {% if total > 0 %}
       {% for listar in lista %}
         <tr>
@@ -40,11 +43,11 @@
           <th>{{ listar.state }}</th>
           <th>{{ listar.city }}</th>
           <th>
-              <a href="/modals/update.html">
-                <button type="submit" style="border: 0; background: transparent">
-                  <img src="/img/pencil.png" alt="edit" id="opt">
-                </button>
-              </a>
+            <form action="/editar/{{ listar.id }}" method="POST">
+              <button type="submit" style="border: 0; background: transparent">
+                <img src="/img/pencil.png" alt="edit" id="opt">
+              </button>
+            </form>
             <form action="/deldados/{{ listar.id }}" method="POST">
               <button type="submit" style="border: 0; background: transparent">
                 <img src="/img/remove.png" alt="delete" id="opt">
@@ -66,7 +69,7 @@
 {% include "./src/modals/del-dados.html" %}
 {% endif %}
 
-{% if update %}
+{% if up %}
 {% include "./src/modals/confirm-update.html" %}
 {% endif %}
 
